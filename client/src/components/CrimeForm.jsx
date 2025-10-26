@@ -1,5 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
+
+// Read backend base URL from Vite env or fall back to localhost
+const API = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 import { FiMapPin, FiCalendar, FiClock, FiFileText, FiShield, FiLoader } from "react-icons/fi";
 
 function CrimeForm({ onCrimeAdded }) {
@@ -16,7 +19,7 @@ function CrimeForm({ onCrimeAdded }) {
     e.preventDefault();
     try {
       setLoading(true);
-      await axios.post("http://localhost:5000/police/add-crime", crime, {
+      await axios.post(`${API}/police/add-crime`, crime, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       alert("✅ Crime added successfully!");

@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+
+// Read backend base URL from Vite env or fall back to localhost
+const API = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 import EditCrimeModal from "./EditCrimeModal";
 import { FiEdit2, FiTrash2, FiAlertTriangle, FiMapPin, FiClock } from "react-icons/fi";
 
@@ -11,7 +14,7 @@ function CrimeTable() {
   const fetchCrimes = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5000/police/crimes", {
+      const res = await axios.get(`${API}/police/crimes`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setCrimeData(res.data);
@@ -24,7 +27,7 @@ function CrimeTable() {
 
   const deleteCrime = async (id) => {
     if (confirm("⚠️ Are you sure you want to delete this crime record?")) {
-      await axios.delete(`http://localhost:5000/police/crime/${id}`, {
+      await axios.delete(`${API}/police/crime/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       fetchCrimes();

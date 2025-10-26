@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+// backend base URL from Vite env
+const API = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+
 function RetrainModel() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -13,7 +16,7 @@ function RetrainModel() {
     setError("");
     try {
       // Call backend endpoint to retrain model
-      const response = await axios.post("/police/retrain"); // Adjust endpoint if needed
+  const response = await axios.post(`${API}/police/retrain`); // Adjust endpoint if needed
       if (response.data.success) {
         setMessage("Model retrained successfully!");
       } else {

@@ -2,12 +2,15 @@
 import { useState } from "react";
 import axios from "axios";
 
+// Read backend base URL from Vite env or fall back to localhost
+const API = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+
 function EditCrimeModal({ crime, onClose, onUpdate }) {
   const [formData, setFormData] = useState(crime);
 
   const handleUpdate = async () => {
     await axios.put(
-      `http://localhost:5000/police/crime/${crime._id}`,
+      `${API}/police/crime/${crime._id}`,
       formData,
       { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
     );
