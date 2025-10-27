@@ -7,5 +7,4 @@ export const checkAuth = () => {
 export const logout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("policeAuth");
-  window.location.href = "/police/login";
 };

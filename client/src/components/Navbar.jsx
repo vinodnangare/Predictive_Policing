@@ -1,6 +1,6 @@
 // src/components/Navbar.jsx
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiLogIn, FiLogOut, FiShield, FiMenu, FiX } from "react-icons/fi";
 import { logout, checkAuth } from "../utils/auth";
 
@@ -8,8 +8,12 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const isLoggedIn = checkAuth();
 
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     logout();
+    // navigate to public dashboard using client-side routing
+    navigate('/');
   };
 
   return (

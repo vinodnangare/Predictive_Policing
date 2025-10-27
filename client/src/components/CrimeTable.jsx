@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-// Read backend base URL from Vite env or fall back to localhost
-const API = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
-console.log(import.meta.env.VITE_BACKEND_URL);
+// Read backend base URL from Vite env. If not provided, use relative paths (same origin)
+const API = import.meta.env.VITE_BACKEND_URL ? import.meta.env.VITE_BACKEND_URL.replace(/\/$/, '') : '';
 import EditCrimeModal from "./EditCrimeModal";
 import { FiEdit2, FiTrash2, FiAlertTriangle, FiMapPin, FiClock } from "react-icons/fi";
 
