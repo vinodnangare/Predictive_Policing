@@ -33,9 +33,28 @@ router.post('/add-crime', async (req, res) => {
 });
 
 
+// Get all crimes with better error handling and logging
 router.get('/crimes', async (req, res) => {
-	const crimes = await Crime.find().sort({ date: -1 });
-	res.json(crimes);
+	try {
+		const crimes = await Crime.find().sort({ date: -1 });
+		console.log(`GET /police/crimes - returning ${crimes.length} records`);
+		res.json(crimes);
+	} catch (err) {
+		console.error('Error fetching crimes:', err);
+		res.status(500).json({ error: 'Failed to fetch crimes', details: err.message });
+	}
+});
+
+// Health check endpoint to verify server and DB connectivity
+router.get('/health', async (req, res) => {
+	try {
+		// A quick DB check - count documents (fast)
+		const count = await Crime.estimatedDocumentCount();
+		res.json({ status: 'ok', db: true, crimeCount: count });
+	} catch (err) {
+		console.error('Health check failed:', err);
+		res.status(500).json({ status: 'error', db: false, details: err.message });
+	}
 });
 
 
