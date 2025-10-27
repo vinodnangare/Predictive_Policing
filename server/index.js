@@ -8,8 +8,18 @@ const bodyParser = require('body-parser');
 const controller = require('./controllers/controller');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ['https://predictive-policing-1.onrender.com', 'http://localhost:5173'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+}));
 app.use(bodyParser.json());
+
+// Add this before your routes
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`, req.body);
+  next();
+});
 
 const connectDB = async () => {
   try {

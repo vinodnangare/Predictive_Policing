@@ -19,15 +19,17 @@ router.post('/login', async (req, res) => {
 	res.status(401).json({ error: 'Invalid credentials' });
 });
 
--
 router.post('/add-crime', async (req, res) => {
-	try {
-		const crime = new Crime(req.body);
-		await crime.save();
-		res.json({ message: 'Crime added', crime });
-	} catch (err) {
-		res.status(400).json({ error: 'Failed to add crime' });
-	}
+  try {
+    console.log('Received crime data:', req.body);
+    const crime = new Crime(req.body);
+    await crime.save();
+    console.log('Crime saved successfully:', crime);
+    res.json({ message: 'Crime added', crime });
+  } catch (err) {
+    console.error('Error adding crime:', err);
+    res.status(400).json({ error: 'Failed to add crime', details: err.message });
+  }
 });
 
 
