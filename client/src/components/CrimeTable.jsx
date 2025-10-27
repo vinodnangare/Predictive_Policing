@@ -3,6 +3,7 @@ import axios from "axios";
 
 // Read backend base URL from Vite env or fall back to localhost
 const API = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+console.log(import.meta.env.VITE_BACKEND_URL);
 import EditCrimeModal from "./EditCrimeModal";
 import { FiEdit2, FiTrash2, FiAlertTriangle, FiMapPin, FiClock } from "react-icons/fi";
 
