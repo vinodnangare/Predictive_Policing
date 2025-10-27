@@ -1,23 +1,50 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+const API = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 function PoliceLogin() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  // ✅ Default credentials
+  // Default credentials
   const defaultEmail = "police@example.com";
   const defaultPassword = "123456";
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      // First try the API login
+      const response = await axios.post(`${API}/police/login`, form);
 
-    // ✅ Check login
-    if (form.email === defaultEmail && form.password === defaultPassword) {
-      localStorage.setItem("policeAuth", "true"); // Save login session
-      setError(""); // Clear errors
-      window.location.href = "/police/dashboard"; // Redirect to dashboard
-    } else {
-      setError("❌ Incorrect email or password!");
+      if (response.data.token) {
+        // API login successful
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("policeAuth", "true");
+        setError("");
+        navigate("/police/dashboard");
+      } else if (form.email === defaultEmail && form.password === defaultPassword) {
+        // Fallback to demo login
+        localStorage.setItem("policeAuth", "true");
+        localStorage.setItem("token", "demo-token");
+        setError("");
+        navigate("/police/dashboard");
+      } else {
+        setError("❌ Incorrect email or password!");
+      }
+    } catch (err) {
+      // If API fails, try demo login
+      if (form.email === defaultEmail && form.password === defaultPassword) {
+        localStorage.setItem("policeAuth", "true");
+        localStorage.setItem("token", "demo-token");
+        setError("");
+        navigate("/police/dashboard");
+      } else {
+        console.error("Login error:", err);
+        setError("❌ Incorrect email or password!");
+      }
     }
   };
 
