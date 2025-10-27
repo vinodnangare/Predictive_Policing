@@ -1,8 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
-// Read backend base URL from Vite env or fall back to localhost
-const API = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+// Ensure no trailing slash in the API URL
+const API = (import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000').replace(/\/$/, '');
 import { FiMapPin, FiCalendar, FiClock, FiFileText, FiShield, FiLoader } from "react-icons/fi";
 
 function CrimeForm({ onCrimeAdded }) {
@@ -20,14 +20,17 @@ function CrimeForm({ onCrimeAdded }) {
     try {
       setLoading(true);
       await axios.post(`${API}/police/add-crime`, crime, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { 
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+          'Content-Type': 'application/json'
+        },
       });
       alert("✅ Crime added successfully!");
       setCrime({ type: "", date: "", time: "", location: "", description: "" });
-      onCrimeAdded();
+      onCrimeAdded?.();
     } catch (err) {
+      console.error("Error details:", err.response || err);
       alert("❌ Failed to add crime record. Please try again.");
-      console.error(err);
     } finally {
       setLoading(false);
     }
