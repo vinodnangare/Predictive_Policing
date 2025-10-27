@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const API = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
@@ -8,43 +8,35 @@ function PoliceLogin() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // Default credentials
-  const defaultEmail = "police@example.com";
-  const defaultPassword = "123456";
+  // Get the page they tried to visit or default to dashboard
+  const from = location.state?.from || "/police/dashboard";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      // First try the API login
-      const response = await axios.post(`${API}/police/login`, form);
+    setError("");
 
-      if (response.data.token) {
-        // API login successful
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("policeAuth", "true");
-        setError("");
-        navigate("/police/dashboard");
-      } else if (form.email === defaultEmail && form.password === defaultPassword) {
-        // Fallback to demo login
-        localStorage.setItem("policeAuth", "true");
+    try {
+      if (form.email === "police@example.com" && form.password === "123456") {
+        // Demo login
         localStorage.setItem("token", "demo-token");
-        setError("");
-        navigate("/police/dashboard");
+        localStorage.setItem("policeAuth", "true");
+        navigate(from, { replace: true });
       } else {
-        setError("❌ Incorrect email or password!");
+        // Real API login
+        const response = await axios.post(`${API}/police/login`, form);
+        if (response.data.token) {
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("policeAuth", "true");
+          navigate(from, { replace: true });
+        }
       }
     } catch (err) {
-      // If API fails, try demo login
-      if (form.email === defaultEmail && form.password === defaultPassword) {
-        localStorage.setItem("policeAuth", "true");
-        localStorage.setItem("token", "demo-token");
-        setError("");
-        navigate("/police/dashboard");
-      } else {
-        console.error("Login error:", err);
-        setError("❌ Incorrect email or password!");
-      }
+      console.error("Login error:", err);
+      setError("❌ Incorrect email or password!");
+      localStorage.removeItem("token");
+      localStorage.removeItem("policeAuth");
     }
   };
 
@@ -69,7 +61,7 @@ function PoliceLogin() {
           required
         />
 
-        {error && <p className="text-red-600 text-sm">{error}</p>}
+        {error && <p className="text-red-600 text-sm mb-3">{error}</p>}
 
         <button className="bg-blue-600 text-white px-4 py-2 w-full rounded hover:bg-blue-700">
           Login

@@ -2,14 +2,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiLogIn, FiLogOut, FiShield, FiMenu, FiX } from "react-icons/fi";
+import { logout, checkAuth } from "../utils/auth";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const isLoggedIn = !!localStorage.getItem("token");
+  const isLoggedIn = checkAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/police/login";
+    logout();
   };
 
   return (

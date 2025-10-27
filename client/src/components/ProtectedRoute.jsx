@@ -1,16 +1,16 @@
 // src/components/ProtectedRoute.jsx
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 function ProtectedRoute({ children }) {
-  // Check both token and auth state
-  const isAuthenticated = localStorage.getItem("policeAuth") === "true" && localStorage.getItem("token");
+  const location = useLocation();
+  const token = localStorage.getItem("token");
+  const isAuthenticated = localStorage.getItem("policeAuth") === "true";
 
-  // If not authenticated, redirect to login
-  if (!isAuthenticated) {
-    return <Navigate to="/police/login" replace />;
+  if (!token || !isAuthenticated) {
+    // Redirect to login but save the attempted path
+    return <Navigate to="/police/login" state={{ from: location.pathname }} replace />;
   }
 
-  // If authenticated, render the protected component
   return children;
 }
 
