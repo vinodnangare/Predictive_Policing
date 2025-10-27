@@ -379,7 +379,7 @@ function CrimeMap({ crimeData = [] }) {
   }, [filteredData]);
 
   return (
-    <div className="mt-6">
+    <div className="mt-20">
       {/* FILTER BAR */}
       <div className="bg-white shadow-md p-4 rounded-lg flex flex-wrap gap-4 items-center mb-4 relative">
         {/* Loading indicator */}

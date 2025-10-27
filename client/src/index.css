@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.content-container {
+  padding-top: 64px; /* 4rem - matches navbar height */
+}

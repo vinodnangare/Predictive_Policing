@@ -1,13 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import PoliceNavbar from "../components/PoliceNavbar";
 import { FiFilePlus, FiDatabase, FiBarChart2, FiMapPin } from "react-icons/fi";
 
 function PoliceDashboard() {
-  return (
-    <div className="min-h-screen bg-gray-100">
-      <PoliceNavbar />
+  const navigate = useNavigate();
 
-      {/* Dashboard Section */}
-      <div className="p-6">
+  return (
+    // add top padding so content is not hidden behind the fixed navbar
+    <div className="min-h-screen pt-16 bg-gray-100">
+      <PoliceNavbar />
+      {/* Add content-container class to the main content div */}
+      <div className="content-container p-6">
         {/* Page Heading */}
         <h1 className="text-3xl font-bold text-gray-900">Welcome Officer 👮‍♂️</h1>
         <p className="text-gray-600 mt-2">
@@ -20,7 +23,7 @@ function PoliceDashboard() {
           {/* Add Crime Report */}
           <div
             className="bg-white shadow-lg hover:shadow-xl p-6 rounded-lg cursor-pointer transition transform hover:scale-105"
-            onClick={() => (window.location.href = "/police/add-crime")}
+            onClick={() => navigate("/police/add-crime")}
           >
             <FiFilePlus className="text-blue-600 text-3xl mb-3" />
             <h2 className="font-semibold text-lg">Add Crime Report</h2>
@@ -30,7 +33,7 @@ function PoliceDashboard() {
           {/* View Crime Records */}
           <div
             className="bg-white shadow-lg hover:shadow-xl p-6 rounded-lg cursor-pointer transition transform hover:scale-105"
-            onClick={() => (window.location.href = "/police/view-crimes")}
+            onClick={() => navigate("/police/view-crimes")}
           >
             <FiDatabase className="text-green-600 text-3xl mb-3" />
             <h2 className="font-semibold text-lg">View Crime Records</h2>
@@ -40,7 +43,7 @@ function PoliceDashboard() {
           {/* AI Model Training */}
           <div
             className="bg-white shadow-lg hover:shadow-xl p-6 rounded-lg cursor-pointer transition transform hover:scale-105"
-            onClick={() => (window.location.href = "/police/train-model")}
+            onClick={() => navigate("/police/train-model")}
           >
             <FiBarChart2 className="text-purple-600 text-3xl mb-3" />
             <h2 className="font-semibold text-lg">Train AI Model</h2>
@@ -50,7 +53,7 @@ function PoliceDashboard() {
           {/* Crime Hotspot Map */}
           <div
             className="bg-white shadow-lg hover:shadow-xl p-6 rounded-lg cursor-pointer transition transform hover:scale-105"
-            onClick={() => (window.location.href = "/police/hotspots")}
+            onClick={() => navigate("/police/hotspots")}
           >
             <FiMapPin className="text-red-600 text-3xl mb-3" />
             <h2 className="font-semibold text-lg">Crime Hotspot Map</h2>
