@@ -1,2 +1,10 @@
 .env
 node_modules
+__pycache__/
+*.pyc
+crime_hotspot_model.pkl
+retrain_stdout.json
+retrain_stderr.log
+evaluate_metrics_stdout.json
+evaluate_metrics_stderr.log
+Model_Review_Report.pdf
