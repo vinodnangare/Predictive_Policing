@@ -1,0 +1,190 @@
+import React from 'react';
+
+const HotspotPopup = ({ hotspot, index }) => {
+  const h = hotspot;
+
+  return (
+    <div className="w-[300px] max-h-[70vh] overflow-hidden flex flex-col bg-white rounded-sm">
+      <h3 className="font-bold text-sm sticky top-0 z-10 bg-white border-b border-red-200 p-2 text-red-700 flex items-center gap-2 shadow-sm">
+        <span className="text-base">🔥</span>
+        <span>Crime Hotspot #{index + 1}</span>
+      </h3>
+      <div className="px-2 py-1.5 overflow-y-auto custom-scrollbar flex-1">
+        <div className="space-y-2.5">
+        {/* Risk Level and Trend */}
+        <div>
+          <div className="flex justify-between items-center mb-1.5">
+            <h4 className="font-semibold text-sm">Risk Assessment</h4>
+            <span className={`px-2 py-0.5 rounded text-xs font-medium ${
+              h.prediction?.trend === 'increasing' ? 'bg-red-100 text-red-700' :
+              h.prediction?.trend === 'decreasing' ? 'bg-green-100 text-green-700' :
+              'bg-blue-100 text-blue-700'
+            }`}>
+              {h.prediction?.trend === 'increasing' ? '↗️ Increasing' :
+               h.prediction?.trend === 'decreasing' ? '↘️ Decreasing' :
+               '→ Stable'}
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className={`text-2xl font-bold rounded-lg px-3 py-1.5 flex-1 text-center ${
+              (h.prediction?.likelihood || 0) > 75 ? 'bg-red-100 text-red-700' :
+              (h.prediction?.likelihood || 0) > 50 ? 'bg-orange-100 text-orange-700' :
+              'bg-yellow-100 text-yellow-700'
+            }`}>
+              {h.prediction?.likelihood || 0}%
+            </div>
+            <div className="text-xs text-gray-500 font-medium">Risk<br/>Level</div>
+          </div>
+        </div>
+
+        {/* Risk Factors */}
+        <div>
+          <h4 className="font-semibold text-sm mb-1.5">Risk Factors</h4>
+          <div className="grid grid-cols-2 gap-1.5">
+            {h.prediction?.riskFactors?.recentActivity && 
+              <div className="text-xs bg-red-50 text-red-700 rounded p-2">
+                ⚠️ Recent Activity
+              </div>
+            }
+            {h.prediction?.riskFactors?.highFrequency && 
+              <div className="text-xs bg-orange-50 text-orange-700 rounded p-2">
+                📈 High Frequency
+              </div>
+            }
+            {h.prediction?.riskFactors?.timePattern && 
+              <div className="text-xs bg-yellow-50 text-yellow-700 rounded p-2">
+                ⏰ Time Pattern
+              </div>
+            }
+            {h.prediction?.riskFactors?.multipleTypes && 
+              <div className="text-xs bg-purple-50 text-purple-700 rounded p-2">
+                🔄 Multiple Types
+              </div>
+            }
+          </div>
+        </div>
+
+        {/* Next Prediction */}
+        <div>
+          <h4 className="font-semibold text-sm mb-1.5">Predicted Next Incident</h4>
+          <div className="bg-blue-50 rounded p-2 flex justify-between items-center">
+            <div className="text-blue-700 text-sm font-medium">{h.prediction?.nextPossibleDay || 'Unknown'}</div>
+            <div className="text-xs text-blue-500">⏰ {h.prediction?.timeOfDay || 'Unknown'}</div>
+          </div>
+        </div>
+
+        {/* Location Details */}
+        <div>
+          <h4 className="font-semibold text-sm mb-1.5">Area Information</h4>
+          <div className="bg-gray-50 rounded p-2 space-y-1.5 text-sm">
+            <div>
+              <span className="text-gray-500">Area:</span> 
+              <span className="font-medium ml-2">{h.prediction?.areaInfo?.name}</span>
+            </div>
+            <div>
+              <span className="text-gray-500">District:</span>
+              <span className="font-medium ml-2">{h.prediction?.areaInfo?.district}</span>
+            </div>
+            <div>
+              <span className="text-gray-500">State:</span>
+              <span className="font-medium ml-2">{h.prediction?.areaInfo?.state}</span>
+            </div>
+            {(() => {
+              const distribution = h.prediction?.areaInfo?.crimeDistribution;
+              if (!Array.isArray(distribution)) return null;
+              
+              return (
+                <div className="mt-2 pt-2 border-t border-gray-200">
+                  <span className="text-gray-500 text-sm">Crime Distribution:</span>
+                  <div className="mt-1 space-y-1">
+                    {distribution.map((item, idx) => {
+                      const location = typeof item === 'object' ? item.location : 
+                                     Array.isArray(item) ? item[0] : 
+                                     String(item);
+                      const count = typeof item === 'object' ? item.count : 
+                                  Array.isArray(item) ? item[1] : 
+                                  0;
+                      
+                      return (
+                        <div key={`dist-${idx}-${location}`} className="text-sm text-gray-600">
+                          • {location}: {count} cases
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+        </div>
+
+        {/* Crime Statistics */}
+        <div>
+          <h4 className="font-semibold text-sm mb-1.5">Crime Statistics</h4>
+          <div className="grid grid-cols-3 gap-1.5">
+            <div className="bg-gray-50 rounded p-1.5 text-center">
+              <div className="text-base font-bold text-gray-700">{h.prediction?.crimeCount || 0}</div>
+              <div className="text-[10px] text-gray-500 uppercase tracking-wide">Total</div>
+            </div>
+            <div className="bg-gray-50 rounded p-1.5 text-center">
+              <div className="text-base font-bold text-gray-700">{h.prediction?.recentCrimes || 0}</div>
+              <div className="text-[10px] text-gray-500 uppercase tracking-wide">Recent</div>
+            </div>
+            <div className="bg-gray-50 rounded p-1.5 text-center">
+              <div className="text-base font-bold text-gray-700">{h.prediction?.confidence || 0}%</div>
+              <div className="text-[10px] text-gray-500 uppercase tracking-wide">Confidence</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Common Crime Types */}
+        <div>
+          <h4 className="font-semibold text-sm mb-1.5">Crime Analysis</h4>
+          <div className="space-y-1 max-h-32 overflow-y-auto pr-1">
+            {(() => {
+              const breakdown = h.prediction?.typeBreakdown;
+              if (!Array.isArray(breakdown)) return null;
+              
+              return breakdown.map((item, idx) => {
+                const type = typeof item === 'object' ? item.type : 
+                           Array.isArray(item) ? item[0] : 
+                           String(item);
+                const count = typeof item === 'object' ? item.count : 
+                            Array.isArray(item) ? item[1] : 
+                            0;
+                
+                return (
+                  <div key={`type-${idx}-${type}`} className="flex justify-between items-center">
+                    <span className="bg-gray-100 rounded px-2 py-1 text-sm">
+                      {type}
+                    </span>
+                    <span className="text-gray-600 text-sm">
+                      {count} incidents
+                    </span>
+                  </div>
+                );
+              });
+            })()}
+          </div>
+        </div>
+
+        {/* Meta Info */}
+        <div className="text-[10px] text-gray-400 border-t pt-2 mt-2">
+          <div className="flex items-center gap-1 truncate">
+            <span>📍</span>
+            <span className="truncate">{h.lat.toFixed(5)}, {h.lng.toFixed(5)}</span>
+          </div>
+          <div className="flex items-center gap-1 truncate">
+            <span>🔄</span>
+            <span className="truncate">Updated: {new Date(h.prediction?.lastUpdated).toLocaleString()}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  );
+};
+
+export default HotspotPopup;
+
+export default HotspotPopup;

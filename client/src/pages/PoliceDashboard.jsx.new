@@ -1,0 +1,241 @@
+import { useNavigate } from "react-router-dom";
+import { FiFilePlus, FiDatabase, FiBarChart2, FiMapPin, FiTrendingUp, FiSearch, FiBook, FiUsers, FiBell, FiDownload, FiClock, FiUploadCloud } from "react-icons/fi";
+
+function PoliceDashboard() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen pt-16 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+      <div className="content-container p-6 sm:p-10">
+        {/* Page Heading */}
+        <div className="mb-10">
+          <h1 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-3">Welcome Officer 👮‍♂️</h1>
+          <p className="text-lg text-gray-300">
+            Manage crime records, track analytics, train AI models, and monitor real-time crime hotspots.
+          </p>
+        </div>
+
+        {/* Stats Cards / Quick Actions */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-10">
+          
+          {/* Add Crime Report */}
+          <div
+            className="group bg-gradient-to-br from-blue-600/20 to-blue-700/20 border border-blue-500/30 hover:border-blue-400/60 hover:from-blue-600/30 hover:to-blue-700/30 shadow-lg hover:shadow-blue-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/add-crime")}
+          >
+            <div className="bg-blue-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-500/30 transition-colors">
+              <FiFilePlus className="text-blue-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-blue-100 group-hover:text-blue-50 transition-colors">Add Crime Report</h2>
+            <p className="text-gray-400 text-sm mt-2">Record new crime incidents quickly.</p>
+          </div>
+
+          {/* View Crime Records */}
+          <div
+            className="group bg-gradient-to-br from-emerald-600/20 to-emerald-700/20 border border-emerald-500/30 hover:border-emerald-400/60 hover:from-emerald-600/30 hover:to-emerald-700/30 shadow-lg hover:shadow-emerald-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/view-crimes")}
+          >
+            <div className="bg-emerald-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-emerald-500/30 transition-colors">
+              <FiDatabase className="text-emerald-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-emerald-100 group-hover:text-emerald-50 transition-colors">View Crime Records</h2>
+            <p className="text-gray-400 text-sm mt-2">Access, edit, and analyze crime reports.</p>
+          </div>
+
+          {/* AI Model Training */}
+          <div
+            className="group bg-gradient-to-br from-purple-600/20 to-purple-700/20 border border-purple-500/30 hover:border-purple-400/60 hover:from-purple-600/30 hover:to-purple-700/30 shadow-lg hover:shadow-purple-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/train-model")}
+          >
+            <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-500/30 transition-colors">
+              <FiBarChart2 className="text-purple-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-purple-100 group-hover:text-purple-50 transition-colors">Train AI Model</h2>
+            <p className="text-gray-400 text-sm mt-2">Retrain the model with latest crime data.</p>
+          </div>
+
+          {/* Crime Hotspot Map */}
+          <div
+            className="group bg-gradient-to-br from-red-600/20 to-red-700/20 border border-red-500/30 hover:border-red-400/60 hover:from-red-600/30 hover:to-red-700/30 shadow-lg hover:shadow-red-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/hotspots")}
+          >
+            <div className="bg-red-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-red-500/30 transition-colors">
+              <FiMapPin className="text-red-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-red-100 group-hover:text-red-50 transition-colors">Crime Hotspot Map</h2>
+            <p className="text-gray-400 text-sm mt-2">View AI-predicted crime-prone areas.</p>
+          </div>
+
+          {/* Crime Analytics */}
+          <div
+            className="group bg-gradient-to-br from-cyan-600/20 to-cyan-700/20 border border-cyan-500/30 hover:border-cyan-400/60 hover:from-cyan-600/30 hover:to-cyan-700/30 shadow-lg hover:shadow-cyan-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/analytics")}
+          >
+            <div className="bg-cyan-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-cyan-500/30 transition-colors">
+              <FiTrendingUp className="text-cyan-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-cyan-100 group-hover:text-cyan-50 transition-colors">Crime Analytics</h2>
+            <p className="text-gray-400 text-sm mt-2">View detailed graphs & statistics.</p>
+          </div>
+
+          {/* Case Management */}
+          <div
+            className="group bg-gradient-to-br from-indigo-600/20 to-indigo-700/20 border border-indigo-500/30 hover:border-indigo-400/60 hover:from-indigo-600/30 hover:to-indigo-700/30 shadow-lg hover:shadow-indigo-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/cases")}
+          >
+            <div className="bg-indigo-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-500/30 transition-colors">
+              <FiBook className="text-indigo-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-indigo-100 group-hover:text-indigo-50 transition-colors">Case Management</h2>
+            <p className="text-gray-400 text-sm mt-2">Track and manage crime cases.</p>
+          </div>
+
+          {/* Advanced Search */}
+          <div
+            className="group bg-gradient-to-br from-pink-600/20 to-pink-700/20 border border-pink-500/30 hover:border-pink-400/60 hover:from-pink-600/30 hover:to-pink-700/30 shadow-lg hover:shadow-pink-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/search")}
+          >
+            <div className="bg-pink-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-pink-500/30 transition-colors">
+              <FiSearch className="text-pink-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-pink-100 group-hover:text-pink-50 transition-colors">Advanced Search</h2>
+            <p className="text-gray-400 text-sm mt-2">Search with filters & geofencing.</p>
+          </div>
+
+          {/* Officer Performance */}
+          <div
+            className="group bg-gradient-to-br from-teal-600/20 to-teal-700/20 border border-teal-500/30 hover:border-teal-400/60 hover:from-teal-600/30 hover:to-teal-700/30 shadow-lg hover:shadow-teal-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/performance")}
+          >
+            <div className="bg-teal-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal-500/30 transition-colors">
+              <FiUsers className="text-teal-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-teal-100 group-hover:text-teal-50 transition-colors">Officer Performance</h2>
+            <p className="text-gray-400 text-sm mt-2">Track officer metrics & stats.</p>
+          </div>
+
+          {/* Suspect Matching */}
+          <div
+            className="group bg-gradient-to-br from-orange-600/20 to-orange-700/20 border border-orange-500/30 hover:border-orange-400/60 hover:from-orange-600/30 hover:to-orange-700/30 shadow-lg hover:shadow-orange-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/suspect-matching")}
+          >
+            <div className="bg-orange-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-500/30 transition-colors">
+              <FiSearch className="text-orange-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-orange-100 group-hover:text-orange-50 transition-colors">Suspect Matching</h2>
+            <p className="text-gray-400 text-sm mt-2">Match suspects across crimes.</p>
+          </div>
+
+          {/* Report Generation */}
+          <div
+            className="group bg-gradient-to-br from-cyan-600/20 to-cyan-700/20 border border-cyan-500/30 hover:border-cyan-400/60 hover:from-cyan-600/30 hover:to-cyan-700/30 shadow-lg hover:shadow-cyan-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/report-generation")}
+          >
+            <div className="bg-cyan-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-cyan-500/30 transition-colors">
+              <FiDownload className="text-cyan-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-cyan-100 group-hover:text-cyan-50 transition-colors">Report Generation</h2>
+            <p className="text-gray-400 text-sm mt-2">Export reports as PDF/Excel.</p>
+          </div>
+
+          {/* Live Crime Feed */}
+          <div
+            className="group bg-gradient-to-br from-red-600/20 to-red-700/20 border border-red-500/30 hover:border-red-400/60 hover:from-red-600/30 hover:to-red-700/30 shadow-lg hover:shadow-red-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/live-feed")}
+          >
+            <div className="bg-red-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-red-500/30 transition-colors">
+              <FiBell className="text-red-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-red-100 group-hover:text-red-50 transition-colors">Live Crime Feed</h2>
+            <p className="text-gray-400 text-sm mt-2">Real-time crime incident stream.</p>
+          </div>
+
+          {/* Real-time Alerts */}
+          <div
+            className="group bg-gradient-to-br from-orange-600/20 to-orange-700/20 border border-orange-500/30 hover:border-orange-400/60 hover:from-orange-600/30 hover:to-orange-700/30 shadow-lg hover:shadow-orange-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/crime-alerts")}
+          >
+            <div className="bg-orange-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-500/30 transition-colors">
+              <FiBell className="text-orange-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-orange-100 group-hover:text-orange-50 transition-colors">Crime Alerts</h2>
+            <p className="text-gray-400 text-sm mt-2">Push notifications & geofencing.</p>
+          </div>
+
+          {/* Crime Trend Predictions */}
+          <div
+            className="group bg-gradient-to-br from-indigo-600/20 to-indigo-700/20 border border-indigo-500/30 hover:border-indigo-400/60 hover:from-indigo-600/30 hover:to-indigo-700/30 shadow-lg hover:shadow-indigo-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/trend-predictions")}
+          >
+            <div className="bg-indigo-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-500/30 transition-colors">
+              <FiTrendingUp className="text-indigo-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-indigo-100 group-hover:text-indigo-50 transition-colors">Trend Predictions</h2>
+            <p className="text-gray-400 text-sm mt-2">Predicted crime rates & forecasts.</p>
+          </div>
+
+          {/* Crime Type Distribution */}
+          <div
+            className="group bg-gradient-to-br from-yellow-600/20 to-yellow-700/20 border border-yellow-500/30 hover:border-yellow-400/60 hover:from-yellow-600/30 hover:to-yellow-700/30 shadow-lg hover:shadow-yellow-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/crime-distribution")}
+          >
+            <div className="bg-yellow-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-yellow-500/30 transition-colors">
+              <FiBarChart2 className="text-yellow-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-yellow-100 group-hover:text-yellow-50 transition-colors">Crime Distribution</h2>
+            <p className="text-gray-400 text-sm mt-2">Crime type breakdown & analysis.</p>
+          </div>
+
+          {/* Time-based Analytics */}
+          <div
+            className="group bg-gradient-to-br from-lime-600/20 to-lime-700/20 border border-lime-500/30 hover:border-lime-400/60 hover:from-lime-600/30 hover:to-lime-700/30 shadow-lg hover:shadow-lime-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/time-analytics")}
+          >
+            <div className="bg-lime-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-lime-500/30 transition-colors">
+              <FiClock className="text-lime-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-lime-100 group-hover:text-lime-50 transition-colors">Time Analytics</h2>
+            <p className="text-gray-400 text-sm mt-2">Hourly, daily, & monthly patterns.</p>
+          </div>
+
+          {/* Bulk CSV Upload */}
+          <div
+            className="group bg-gradient-to-br from-violet-600/20 to-violet-700/20 border border-violet-500/30 hover:border-violet-400/60 hover:from-violet-600/30 hover:to-violet-700/30 shadow-lg hover:shadow-violet-500/30 p-7 rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105"
+            onClick={() => navigate("/police/bulk-upload")}
+          >
+            <div className="bg-violet-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:bg-violet-500/30 transition-colors">
+              <FiUploadCloud className="text-violet-300 text-2xl" />
+            </div>
+            <h2 className="font-bold text-lg text-violet-100 group-hover:text-violet-50 transition-colors">Bulk CSV Upload</h2>
+            <p className="text-gray-400 text-sm mt-2">Import multiple crime records at once.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Featured Section */}
+      <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-blue-500/30 rounded-xl p-8 shadow-lg">
+        <h3 className="text-2xl font-bold text-blue-300 mb-4">🎯 Quick Stats</h3>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="bg-slate-700/50 rounded-lg p-4 border border-slate-600/30">
+            <p className="text-gray-400 text-sm mb-2">Total Records</p>
+            <p className="text-3xl font-bold text-blue-400">131</p>
+          </div>
+          <div className="bg-slate-700/50 rounded-lg p-4 border border-slate-600/30">
+            <p className="text-gray-400 text-sm mb-2">Active Cases</p>
+            <p className="text-3xl font-bold text-cyan-400">24</p>
+          </div>
+          <div className="bg-slate-700/50 rounded-lg p-4 border border-slate-600/30">
+            <p className="text-gray-400 text-sm mb-2">Hotspots</p>
+            <p className="text-3xl font-bold text-purple-400">12</p>
+          </div>
+          <div className="bg-slate-700/50 rounded-lg p-4 border border-slate-600/30">
+            <p className="text-gray-400 text-sm mb-2">Model Status</p>
+            <p className="text-lg font-bold text-emerald-400">Active ✓</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default PoliceDashboard;

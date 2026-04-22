@@ -1,5 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Source+Sans+3:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
+
+:root {
+  color-scheme: dark light;
+  --surface-0: #050f1b;
+  --surface-1: #0b1d30;
+  --surface-2: #102943;
+  --text-primary: #e5edf7;
+  --text-secondary: #a4b7cb;
+  --accent-cyan: #22d3ee;
+  --accent-gold: #e3b65c;
+}
+
+html[data-theme="light"] {
+  --surface-0: #f2f6fb;
+  --surface-1: #ffffff;
+  --surface-2: #e7eef7;
+  --text-primary: #0f2135;
+  --text-secondary: #425a72;
+  --accent-cyan: #0ea5b7;
+  --accent-gold: #c7922f;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 18% -10%, rgba(227, 182, 92, 0.2) 0%, rgba(227, 182, 92, 0) 34%),
+    radial-gradient(circle at 85% 0%, rgba(42, 165, 205, 0.22) 0%, rgba(42, 165, 205, 0) 30%),
+    linear-gradient(180deg, #091423 0%, #060d18 50%, #030812 100%);
+  color: var(--text-primary);
+  transition: background 220ms ease, color 220ms ease;
+}
+
+html[data-theme="light"] body {
+  background:
+    radial-gradient(circle at 16% -10%, rgba(199, 146, 47, 0.16) 0%, rgba(199, 146, 47, 0) 36%),
+    radial-gradient(circle at 84% 0%, rgba(14, 165, 183, 0.18) 0%, rgba(14, 165, 183, 0) 30%),
+    linear-gradient(180deg, #f8fbff 0%, #eef4fb 55%, #e8eff8 100%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Merriweather", "Source Sans 3", serif;
+  letter-spacing: 0.01em;
+}
+
+.police-surface {
+  background: linear-gradient(160deg, rgba(9, 30, 48, 0.88) 0%, rgba(7, 22, 37, 0.94) 100%);
+  border: 1px solid rgba(227, 182, 92, 0.18);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.36);
+}
+
+.police-label {
+  color: rgba(227, 182, 92, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
 
 .content-container {
   padding-top: 64px; /* 4rem - matches navbar height */
+}
+
+button,
+[role="button"],
+a[href],
+select,
+summary,
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"] {
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled,
+select:disabled {
+  cursor: not-allowed;
+}
+
+/* Custom scrollbar styles */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.7);
+}
+
+html[data-theme="light"] .police-theme-scope {
+  color: #10263b;
+}
+
+html[data-theme="light"] .police-theme-scope .from-slate-950,
+html[data-theme="light"] .police-theme-scope .from-slate-900,
+html[data-theme="light"] .police-theme-scope .from-slate-800 {
+  --tw-gradient-from: #f8fbff var(--tw-gradient-from-position) !important;
+}
+
+html[data-theme="light"] .police-theme-scope .via-blue-900,
+html[data-theme="light"] .police-theme-scope .via-purple-900 {
+  --tw-gradient-stops: var(--tw-gradient-from), #edf3fb var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+
+html[data-theme="light"] .police-theme-scope .to-slate-950,
+html[data-theme="light"] .police-theme-scope .to-slate-900,
+html[data-theme="light"] .police-theme-scope .to-slate-800 {
+  --tw-gradient-to: #e6eef8 var(--tw-gradient-to-position) !important;
+}
+
+html[data-theme="light"] .police-theme-scope .bg-slate-900,
+html[data-theme="light"] .police-theme-scope .bg-slate-800,
+html[data-theme="light"] .police-theme-scope .bg-slate-700,
+html[data-theme="light"] .police-theme-scope .bg-slate-600,
+html[data-theme="light"] .police-theme-scope .bg-slate-900\/95,
+html[data-theme="light"] .police-theme-scope .bg-slate-900\/30,
+html[data-theme="light"] .police-theme-scope .bg-slate-800\/80,
+html[data-theme="light"] .police-theme-scope .bg-slate-800\/70,
+html[data-theme="light"] .police-theme-scope .bg-slate-700\/50,
+html[data-theme="light"] .police-theme-scope .bg-slate-700\/40,
+html[data-theme="light"] .police-theme-scope .bg-slate-700\/30,
+html[data-theme="light"] .police-theme-scope .bg-slate-700\/20,
+html[data-theme="light"] .police-theme-scope .bg-slate-600\/50,
+html[data-theme="light"] .police-theme-scope .bg-slate-600\/40 {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+
+html[data-theme="light"] .police-theme-scope .border-slate-700,
+html[data-theme="light"] .police-theme-scope .border-slate-600,
+html[data-theme="light"] .police-theme-scope .border-slate-500,
+html[data-theme="light"] .police-theme-scope .border-slate-700\/30,
+html[data-theme="light"] .police-theme-scope .border-slate-600\/30,
+html[data-theme="light"] .police-theme-scope .border-slate-600\/40,
+html[data-theme="light"] .police-theme-scope .border-slate-500\/30,
+html[data-theme="light"] .police-theme-scope .border-slate-500\/40 {
+  border-color: rgba(148, 163, 184, 0.42) !important;
+}
+
+html[data-theme="light"] .police-theme-scope .text-white,
+html[data-theme="light"] .police-theme-scope .text-gray-300,
+html[data-theme="light"] .police-theme-scope .text-slate-300 {
+  color: #122b43 !important;
+}
+
+html[data-theme="light"] .police-theme-scope .text-gray-400,
+html[data-theme="light"] .police-theme-scope .text-gray-500,
+html[data-theme="light"] .police-theme-scope .text-slate-400 {
+  color: #49627b !important;
+}
+
+html[data-theme="light"] .police-theme-scope button.text-white,
+html[data-theme="light"] .police-theme-scope a.text-white {
+  color: #fff !important;
+}
+
+html[data-theme="light"] .police-theme-scope .recharts-cartesian-grid line {
+  stroke: rgba(71, 85, 105, 0.28) !important;
+}
+
+html[data-theme="light"] .police-theme-scope .recharts-text {
+  fill: #30495f !important;
 }

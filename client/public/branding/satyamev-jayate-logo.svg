@@ -1,0 +1,48 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="medal" x1="76" y1="76" x2="436" y2="436" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6DF9A"/>
+      <stop offset="1" stop-color="#A87724"/>
+    </linearGradient>
+    <linearGradient id="wheel" x1="256" y1="166" x2="256" y2="346" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#193C72"/>
+      <stop offset="1" stop-color="#0A1C39"/>
+    </linearGradient>
+    <path id="mottoPath" d="M 92 286 A 164 164 0 0 0 420 286"/>
+  </defs>
+
+  <circle cx="256" cy="256" r="224" fill="#071326"/>
+  <circle cx="256" cy="256" r="204" stroke="url(#medal)" stroke-width="22"/>
+  <circle cx="256" cy="256" r="178" fill="#0E213F" stroke="#D1AA56" stroke-width="2" stroke-opacity="0.5"/>
+
+  <circle cx="256" cy="232" r="76" fill="url(#wheel)" stroke="#E2C57A" stroke-width="5"/>
+  <circle cx="256" cy="232" r="62" stroke="#E2C57A" stroke-width="3"/>
+  <circle cx="256" cy="232" r="8" fill="#E2C57A"/>
+
+  <g stroke="#E2C57A" stroke-width="2.6" stroke-linecap="round">
+    <line x1="256" y1="156" x2="256" y2="308"/>
+    <line x1="180" y1="232" x2="332" y2="232"/>
+    <line x1="202.4" y1="178.4" x2="309.6" y2="285.6"/>
+    <line x1="202.4" y1="285.6" x2="309.6" y2="178.4"/>
+    <line x1="217.6" y1="165.9" x2="294.4" y2="298.1"/>
+    <line x1="165.9" y1="217.6" x2="298.1" y2="294.4"/>
+    <line x1="165.9" y1="246.4" x2="298.1" y2="169.6"/>
+    <line x1="217.6" y1="298.1" x2="294.4" y2="165.9"/>
+    <line x1="188.9" y1="191.7" x2="323.1" y2="272.3"/>
+    <line x1="188.9" y1="272.3" x2="323.1" y2="191.7"/>
+    <line x1="234.2" y1="159.2" x2="277.8" y2="304.8"/>
+    <line x1="159.2" y1="234.2" x2="304.8" y2="277.8"/>
+  </g>
+
+  <g fill="#EED59A">
+    <path d="M210 332C219 319 232 312 247 312C262 312 275 319 284 332H210Z"/>
+    <path d="M224 350C232 339 243 333 256 333C269 333 280 339 288 350H224Z"/>
+    <rect x="206" y="350" width="100" height="12" rx="6"/>
+  </g>
+
+  <text font-family="'Times New Roman', serif" font-size="20" font-weight="700" letter-spacing="2" fill="#F4DEAB">
+    <textPath href="#mottoPath" startOffset="50%" text-anchor="middle">SATYAMEV JAYATE</textPath>
+  </text>
+
+  <text x="256" y="126" text-anchor="middle" font-family="'Times New Roman', serif" font-size="18" letter-spacing="2" fill="#D9B25A">NATIONAL MOTTO</text>
+</svg>

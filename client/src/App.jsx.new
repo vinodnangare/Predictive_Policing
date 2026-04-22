@@ -1,0 +1,182 @@
+// src/App.jsx
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import PoliceLogin from "./pages/PoliceLogin";
+import PoliceDashboard from "./pages/PoliceDashboard";
+import PublicDashboard from "./pages/PublicDashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Navbar from "./components/Navbar";
+import PoliceNavbar from "./components/PoliceNavbar";
+import AddCrime from "./components/CrimeForm";
+import CrimeMap from "./components/CrimeMap";
+import ViewCrimes from "./components/CrimeTable";
+import RetrainModel from "./pages/RetrainModel";
+import CrimeAnalytics from "./components/CrimeAnalytics";
+import CaseManagement from "./components/CaseManagement";
+import AdvancedSearch from "./components/AdvancedSearch";
+import OfficerPerformance from "./components/OfficerPerformance";
+// Feature components
+import SuspectMatching from "./components/SuspectMatching";
+import AutomatedReportGeneration from "./components/AutomatedReportGeneration";
+import LiveCrimeFeed from "./components/LiveCrimeFeed";
+import RealTimeCrimeAlerts from "./components/RealTimeCrimeAlerts";
+import CrimeTrendPredictions from "./components/CrimeTrendPredictions";
+import CrimeTypeDistribution from "./components/CrimeTypeDistribution";
+import TimeBasedAnalytics from "./components/TimeBasedAnalytics";
+import BulkCSVUpload from "./components/BulkCSVUpload";
+import OfficerManagement from "./components/OfficerManagement";
+
+function AppContent() {
+  const location = useLocation();
+  const [isPoliceLoggedIn, setIsPoliceLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if user is logged in as police officer
+    const policeAuth = localStorage.getItem("policeAuth") === "true";
+    setIsPoliceLoggedIn(policeAuth);
+  }, [location]);
+
+  // Check if current route is a police route
+  const isPoliceRoute = location.pathname.startsWith("/police") && location.pathname !== "/police/login";
+
+  return (
+    <>
+      {isPoliceRoute && isPoliceLoggedIn ? <PoliceNavbar /> : <Navbar />}
+      <Routes>
+        {/* Public User Routes */}
+        <Route path="/" element={<PublicDashboard />} />
+
+        {/* Police Login */}
+        <Route path="/police/login" element={<PoliceLogin />} />
+     
+        {/* Protected Police Dashboard */}
+        <Route
+          path="/police/dashboard"
+          element={
+            <ProtectedRoute>
+              <PoliceDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+       <Route path='/police/add-crime' element={
+            <ProtectedRoute>
+             <AddCrime />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path='/police/view-crimes' element={
+            <ProtectedRoute>
+             <ViewCrimes />
+            </ProtectedRoute>
+          }
+        />
+        <Route path='/police/hotspots' element={
+            <ProtectedRoute>
+             <CrimeMap />
+            </ProtectedRoute>
+          }
+        />  
+        <Route path="/police/train-model" element={
+            <ProtectedRoute>
+              <RetrainModel />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/police/analytics" element={
+            <ProtectedRoute>
+              <CrimeAnalytics />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/police/cases" element={
+            <ProtectedRoute>
+              <CaseManagement />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/police/search" element={
+            <ProtectedRoute>
+              <AdvancedSearch />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/police/performance" element={
+            <ProtectedRoute>
+              <OfficerPerformance />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Feature Routes */}
+        <Route path="/police/suspect-matching" element={
+            <ProtectedRoute>
+              <SuspectMatching />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/police/report-generation" element={
+            <ProtectedRoute>
+              <AutomatedReportGeneration />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/police/live-feed" element={
+            <ProtectedRoute>
+              <LiveCrimeFeed />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/police/crime-alerts" element={
+            <ProtectedRoute>
+              <RealTimeCrimeAlerts />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/police/trend-predictions" element={
+            <ProtectedRoute>
+              <CrimeTrendPredictions />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/police/crime-distribution" element={
+            <ProtectedRoute>
+              <CrimeTypeDistribution />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/police/time-analytics" element={
+            <ProtectedRoute>
+              <TimeBasedAnalytics />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/police/bulk-upload" element={
+            <ProtectedRoute>
+              <BulkCSVUpload />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/police/officers" element={
+            <ProtectedRoute>
+              <OfficerManagement />
+            </ProtectedRoute>
+          }
+        />
+
+      </Routes>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+}
+
+export default App;

@@ -1,0 +1,43 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ring" x1="64" y1="64" x2="448" y2="448" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D9B25A"/>
+      <stop offset="1" stop-color="#9A6B1F"/>
+    </linearGradient>
+    <linearGradient id="core" x1="152" y1="128" x2="360" y2="384" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#142B52"/>
+      <stop offset="1" stop-color="#09152B"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="256" y1="172" x2="256" y2="372" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B73434"/>
+      <stop offset="1" stop-color="#6B1111"/>
+    </linearGradient>
+    <filter id="soft" x="0" y="0" width="512" height="512" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="blur" result="shape"/>
+    </filter>
+    <path id="circleTextTop" d="M 86 256 A 170 170 0 0 1 426 256"/>
+    <path id="circleTextBottom" d="M 426 256 A 170 170 0 0 1 86 256"/>
+  </defs>
+
+  <circle cx="256" cy="256" r="224" fill="#071326"/>
+  <circle cx="256" cy="256" r="206" stroke="url(#ring)" stroke-width="22"/>
+  <circle cx="256" cy="256" r="178" fill="url(#core)" stroke="#D1AA56" stroke-opacity="0.45" stroke-width="2"/>
+
+  <g filter="url(#soft)">
+    <path d="M256 166L318 191V264C318 315 292 349 256 370C220 349 194 315 194 264V191L256 166Z" fill="url(#shield)" stroke="#E5C06A" stroke-width="6"/>
+    <path d="M256 197L272 231L310 235L282 261L289 298L256 280L223 298L230 261L202 235L240 231L256 197Z" fill="#F8E39A"/>
+    <rect x="228" y="316" width="56" height="12" rx="6" fill="#F8E39A" fill-opacity="0.9"/>
+  </g>
+
+  <circle cx="256" cy="146" r="12" fill="#D9B25A"/>
+  <circle cx="356" cy="192" r="8" fill="#D9B25A" fill-opacity="0.8"/>
+  <circle cx="156" cy="192" r="8" fill="#D9B25A" fill-opacity="0.8"/>
+
+  <text font-family="'Times New Roman', serif" font-size="24" font-weight="700" letter-spacing="3" fill="#F4DEAB">
+    <textPath href="#circleTextTop" startOffset="50%" text-anchor="middle">MAHARASHTRA POLICE</textPath>
+  </text>
+  <text font-family="'Times New Roman', serif" font-size="18" font-weight="700" letter-spacing="2" fill="#E6C77D">
+    <textPath href="#circleTextBottom" startOffset="50%" text-anchor="middle">SERVICE  SECURITY  JUSTICE</textPath>
+  </text>
+</svg>
