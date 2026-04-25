@@ -3,8 +3,12 @@ import axios from 'axios';
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { FiTrendingUp, FiUser, FiCheckCircle, FiClock } from 'react-icons/fi';
 import { API_BASE } from '../utils/api';
+import { useLanguage } from '../context/LanguageContext';
+import { useTheme } from '../context/ThemeContext';
 
 function OfficerPerformance() {
+  const { t } = useLanguage();
+  const { isDark } = useTheme();
   const [crimes, setCrimes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [officerStats, setOfficerStats] = useState({});
