@@ -68,8 +68,8 @@ function PoliceLogin() {
           </div>
           <div className="rounded-2xl border border-slate-600/60 bg-slate-900/70 p-4 text-sm text-slate-200">
             <p className="font-semibold text-cyan-200">Demo Credentials</p>
-            <p className="mt-2">Email: police@example.com</p>
-            <p>Password: 123456</p>
+            <p className="mt-2">Test_Email: police@example.com</p>
+            <p>Test_Password: 123456</p>
           </div>
         </section>
 
